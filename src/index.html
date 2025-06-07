@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevStash</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="desktop-window">
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <div class="nav-title">
+                <i class="fas fa-code"></i>
+                <span id="currentPageTitle">Add New Snippet</span>
+            </div>
+            <div>
+                <button class="nav-button" id="toggleViewBtn" onclick="toggleView()">
+                    <i class="fas fa-list"></i>
+                    View Snippets
+                </button>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Add Snippet View -->
+            <div id="addSnippetView" class="main-container">
+                <div class="form-card">
+                    <div class="form-header">
+                        <h2>Create New Snippet</h2>
+                        <p>Save and organize your code snippets for future reference</p>
+                    </div>
+                    
+                    <form id="snippetForm">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-tag"></i>
+                                Snippet Title
+                            </label>
+                            <input type="text" id="title" class="form-input" 
+                                   placeholder="Enter a descriptive title for your snippet..." required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-code"></i>
+                                Code
+                            </label>
+                            <textarea id="code" class="form-textarea" 
+                                      rows="12" placeholder="Paste your code here..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-lightbulb"></i>
+                                Problem Solved (Optional)
+                            </label>
+                            <textarea id="problem" class="form-textarea" 
+                                      rows="3" placeholder="Describe what problem this snippet solves..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-button" id="submitBtn">
+                            <i class="fas fa-save"></i>
+                            Save Snippet
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Snippet List View -->
+            <div id="snippetListView" class="snippet-list-container hidden">
+                <div class="list-header">
+                    <div class="list-title">
+                        <i class="fas fa-layer-group"></i>
+                        Your Code Snippets
+                    </div>
+                    <button class="download-all-btn" onclick="downloadAllSnippets()" id="downloadBtn">
+                        <i class="fas fa-download"></i>
+                        Download All
+                    </button>
+                </div>
+
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchBox" class="search-input" 
+                           placeholder="Search snippets by title, code, or problem..." 
+                           onkeyup="searchSnippets()">
+                </div>
+
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <i class="fas fa-layer-group stat-icon"></i>
+                        <span>Total Snippets: <span id="snippetCount">0</span></span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-clock stat-icon"></i>
+                        <span>Last Updated: <span id="lastUpdated">Never</span></span>
+                    </div>
+                </div>
+
+                <div id="snippetList"></div>
+                
+                <div id="emptyState" class="empty-state hidden">
+                    <div class="empty-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 style="color: #f1f5f9; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">No snippets yet</h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem;">Start by adding your first code snippet to build your collection</p>
+                    <button class="nav-button" onclick="toggleView()">
+                        <i class="fas fa-plus"></i>
+                        Add Your First Snippet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./renderer.js"></script>
+</body>
+</html>
